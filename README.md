@@ -1,5 +1,5 @@
 
-# 👾 Monster Click Game
+# 👾 Jogo de Reflexo (Click & Dodge)
 
 Monster Click é um jogo web interativo desenvolvido com **HTML, CSS e JavaScript**, onde o jogador deve clicar rapidamente nos monstros que aparecem na arena antes que desapareçam.  
 O grande diferencial do jogo é a **progressão dinâmica de dificuldade**, que aumenta conforme a pontuação do jogador cresce.
