@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Monster Click</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="screen fade-in" id="start-screen">
+  <h1>👾 Monster Click</h1>
+  <p>Clique nos monstros antes que desapareçam!</p>
+  <p>🏆 Recorde: <span id="best-score-start">0</span></p>
+  <br>
+  <button id="start-btn">Jogar</button>
+</div>
+
+<script>
+  document.getElementById("start-btn").onclick = () => {
+    const screen = document.getElementById("start-screen");
+    screen.classList.add("fade-out");
+    setTimeout(() => {
+      window.location.href = "jogo.html";
+    }, 800);
+  };
+</script>
+<script>
+  const bestScoreStart = document.getElementById("best-score-start");
+  const bestScore = localStorage.getItem("bestScore") || 0;
+  bestScoreStart.textContent = bestScore;
+</script>
+
+</body>
+</html>
