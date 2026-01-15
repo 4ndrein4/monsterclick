@@ -8,8 +8,13 @@ const gameOverSound = document.getElementById("gameover-sound");
 
 let score = 0;
 let lives = 3;
+
 let gameInterval;
 let monsterTimeout;
+
+// VARIÁVEIS DE DIFICULDADE
+let spawnTime = 1200;
+let monsterLifeTime = 1400;
 
 const monsters = [
   "images/monster1.png",
@@ -22,10 +27,18 @@ startGame();
 function startGame() {
   score = 0;
   lives = 3;
+
+  // reseta dificuldade
+  spawnTime = 1200;
+  monsterLifeTime = 1400;
+
   scoreEl.textContent = score;
   updateLives();
 
-  gameInterval = setInterval(spawnMonster, 1200);
+  game.innerHTML = "";
+
+  clearInterval(gameInterval);
+  gameInterval = setInterval(spawnMonster, spawnTime);
 }
 
 function spawnMonster() {
@@ -53,6 +66,15 @@ function spawnMonster() {
     score++;
     scoreEl.textContent = score;
 
+    // PROGRESSÃO DE DIFICULDADE
+    if (score % 5 === 0 && spawnTime > 400) {
+      spawnTime -= 100;
+      monsterLifeTime -= 100;
+
+      clearInterval(gameInterval);
+      gameInterval = setInterval(spawnMonster, spawnTime);
+    }
+
     monster.remove();
     clearTimeout(monsterTimeout);
   };
@@ -64,11 +86,12 @@ function spawnMonster() {
       monster.remove();
       loseLife();
     }
-  }, 1400);
+  }, monsterLifeTime);
 }
 
 function loseLife() {
   lives--;
+
   lifeSound.currentTime = 0;
   lifeSound.play();
 
