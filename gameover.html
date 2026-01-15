@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Game Over</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="screen fade-in" id="gameover-screen">
+  <h1>☠️ Game Over</h1>
+  <p>Sua pontuação: <span id="final-score">0</span></p>
+  <p>🏆 Recorde: <span id="best-score-end">0</span></p>
+  <h2 id="final-score"></h2>
+
+  <button id="retry-btn">Jogar novamente</button>
+  <button onclick="window.location.href='index.html'">
+  Início
+</button>
+
+</div>
+
+<script>
+  document.getElementById("final-score").textContent =
+    localStorage.getItem("lastScore") || 0;
+
+  document.getElementById("retry-btn").onclick = () => {
+    const screen = document.getElementById("gameover-screen");
+    screen.classList.add("fade-out");
+    setTimeout(() => {
+      window.location.href = "jogo.html";
+    }, 800);
+  };
+</script>
+
+<script>
+  const finalScore = document.getElementById("final-score");
+  const bestScoreEnd = document.getElementById("best-score-end");
+
+  const lastScore = localStorage.getItem("lastScore") || 0;
+  const bestScore = localStorage.getItem("bestScore") || 0;
+
+  finalScore.textContent = lastScore;
+  bestScoreEnd.textContent = bestScore;
+</script>
+
+</body>
+</html>
